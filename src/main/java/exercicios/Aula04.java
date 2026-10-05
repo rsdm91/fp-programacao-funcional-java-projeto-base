@@ -1,9 +1,9 @@
 package exercicios;
 
+import java.util.stream.Stream;
+
 import exercicios.base.Aula;
 import lombok.NonNull;
-
-import java.util.stream.Stream;
 
 /**
  * Esta é uma classe para você poder implementar as atividades propostas no README.
@@ -48,29 +48,41 @@ public class Aula04 extends Aula {
     }
 
     protected double maiorNotaCursoAndSexo(@NonNull final Stream<Estudante> stream, @NonNull final Curso curso, final char sexo) {
-        // TODO: Você precisa implementar este método. Apague estas linhas e escreva o código correto.
-        return -1;
+        return stream
+            .filter((e) -> e.getCurso() == curso && e.getSexo() == sexo)
+            .mapToDouble((e) -> e.getNota())
+            .max()
+            .orElse(0);
     }
 
     protected long totalEstudantesCursoAndSexo(@NonNull final Stream<Estudante> stream, @NonNull final Curso curso, final char sexo) {
-        // TODO: Você precisa implementar este método. Apague estas linhas e escreva o código correto.
-        return -1;
+        return stream
+            .filter(e -> e.getCurso() == curso && e.getSexo() == sexo)
+            .count();
     }
 
     protected double mediaNotaTodosEstudantesCurso(@NonNull final Stream<Estudante> stream, @NonNull final Curso curso){
-        // TODO: Você precisa implementar este método. Apague estas linhas e escreva o código correto.
-        return -1;
+        return stream
+        .filter(e -> e.getCurso() == curso)
+        .mapToDouble(e -> e.getNota())
+        .average()
+        .orElse(0);
     }
 
     protected double maiorNotaTodosEstudantes(@NonNull final Stream<Estudante> stream){
-        // TODO: Você precisa implementar este método. Apague estas linhas e escreva o código correto.
-        return -1;
+        return stream
+            .mapToDouble(e -> e.getNota())
+            .max()
+            .orElse(0);
     }
 
 
     protected double maiorNotaHomens(@NonNull final Stream<Estudante> stream){
-        // TODO: Você precisa implementar este método. Apague estas linhas e escreva o código correto.
-        return -1;
+        return stream
+            .filter(e -> e.getSexo() == 'M')
+            .mapToDouble(e -> e.getNota())
+            .max()
+            .orElse(0);
     }
 }
 
